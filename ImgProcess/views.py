@@ -74,7 +74,6 @@ def license_download(request):
         if encoded_path:
             encoded_path = str(encoded_path).split("'")[1]
             decoded_path = jwt.decode(encoded_path, PRIMARY_KEY, algorithms=['HS256']).get('path')
-            print(decoded_path)
 
             def file_iterator(file=None, chunk_size=512):
                 with open(file, 'rb') as f:
@@ -94,7 +93,7 @@ def license_download(request):
             raise KeyError
     except KeyError:
         return JsonResponse(data={'status': 410})
-    except DecodeError:
+    except (DecodeError, IndexError):
         return JsonResponse(data={'status': 411})
     except Exception:
         return JsonResponse(data={'status': 500})
