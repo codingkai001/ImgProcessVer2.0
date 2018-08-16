@@ -75,6 +75,10 @@ def license_download(request):
             encoded_path = str(encoded_path).split("'")[1]
             decoded_path = jwt.decode(encoded_path, PRIMARY_KEY, algorithms=['HS256']).get('path')
 
+            # 检查文件资源是否存在
+            if not os.access(decoded_path, mode=0):
+                raise FileNotFoundError
+
             def file_iterator(file=None, chunk_size=512):
                 with open(file, 'rb') as f:
                     while True:
@@ -91,9 +95,16 @@ def license_download(request):
             return response
         else:
             raise KeyError
+
     except KeyError:
+        # 捕获参数p不存在异常
         return JsonResponse(data={'status': 410})
     except (DecodeError, IndexError):
+        # 捕获参数值异常
         return JsonResponse(data={'status': 411})
+    except FileNotFoundError:
+        # 捕获文件不存在异常
+        return JsonResponse(data={'status': 412})
     except Exception:
+        # 未知异常
         return JsonResponse(data={'status': 500})
