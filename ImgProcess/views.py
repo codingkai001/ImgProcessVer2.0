@@ -3,7 +3,7 @@ from django.http import HttpResponse, StreamingHttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from django.urls import reverse
-from .settings import MEDIA_ROOT, ALLOWED_SUFFIX, PRIMARY_KEY
+from .settings import MEDIA_ROOT, ALLOWED_SUFFIX, PRIMARY_KEY, BASE_DIR
 import os
 from datetime import datetime
 import jwt
@@ -24,6 +24,11 @@ def license_upload(request):
     :param request:
     :return:JsonResponse()
     """
+    request_detail = os.path.join(BASE_DIR, 'request_header.log')
+    with open(request_detail, 'wt', encoding='utf-8') as fs:
+        for k, v in request.META.items():
+            fs.write('{0}---{1}\n'.format(k, v))
+
     response = HttpResponse()
     response['Content-Type'] = 'application/json'
 
