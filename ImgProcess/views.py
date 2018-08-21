@@ -48,8 +48,8 @@ def license_upload(request):
         # 图像处理模块处理完成后将表格保存在/media/downloads目录下，并且返回excel文件名，供视图调用
         filename = 'tianmao.xlsx'
 
-        encoded_path = jwt.encode({'path': str(download_dir + filename)}, PRIMARY_KEY, algorithm='HS256')
-        download_link = reverse('license_download') + '?p=' + encoded_path.__str__()
+        encoded_path = jwt.encode({'path': (download_dir + filename)}, PRIMARY_KEY, algorithm='HS256')
+        download_link = reverse('license_download') + '?p=' + encoded_path.decode()
 
         response.write(content={
             'status': 200,
@@ -59,11 +59,12 @@ def license_upload(request):
         })
         return response
     except Exception as e:
-        print(e)
+        # print(e)
         response.write(content={
             'status': 500,
             'data': {}
         })
+        return response
 
 
 @csrf_exempt
@@ -77,7 +78,6 @@ def license_download(request):
     try:
         encoded_path = request.GET.get('p')
         if encoded_path:
-            encoded_path = str(encoded_path).split("'")[1]
             decoded_path = jwt.decode(encoded_path, PRIMARY_KEY, algorithms=['HS256']).get('path')
 
             # 检查文件资源是否存在
