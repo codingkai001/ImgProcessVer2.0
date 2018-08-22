@@ -8,6 +8,7 @@ import os
 from datetime import datetime
 import jwt
 from jwt.exceptions import DecodeError
+import json
 
 
 @csrf_exempt
@@ -25,16 +26,21 @@ def license_upload(request):
     :return:JsonResponse()
     """
     request_detail = os.path.join(BASE_DIR, 'request_header.log')
+
+    # 记录当前请求的信息
     with open(request_detail, 'wt', encoding='utf-8') as fs:
         for k, v in request.META.items():
             fs.write('{0}---{1}\n'.format(k, v))
+        for k, v in request.FILES.items():
+            fs.write('name:{0}   filename:{1}   size:{2}Byte\n'.format(k, v.name, str(v.size)))
 
     response = HttpResponse()
     response['Content-Type'] = 'application/json'
-
+    data = {}
     try:
         upload_dir = os.path.join(MEDIA_ROOT, 'uploads/')
         download_dir = os.path.join(MEDIA_ROOT, 'downloads/')
+
         # 前端验证文件是否非空，文件格式是否正确
         for source in request.FILES.values():
             suffix = source.name.split('.')[-1]
@@ -42,7 +48,7 @@ def license_upload(request):
                 file_path = upload_dir + datetime.now().strftime("%Y%m%d%H%M%S%f") + '.' + suffix
                 with open(file_path, 'wb') as f:
                     if source.size != 0:
-                        for block in source.chunks():
+                        for block in source.chunks(1024 * 10):
                             f.write(block)
 
         # 图像处理模块处理完成后将表格保存在/media/downloads目录下，并且返回excel文件名，供视图调用
@@ -51,19 +57,15 @@ def license_upload(request):
         encoded_path = jwt.encode({'path': (download_dir + filename)}, PRIMARY_KEY, algorithm='HS256')
         download_link = reverse('license_download') + '?p=' + encoded_path.decode()
 
-        response.write(content={
-            'status': 200,
-            'data': {
-                'download_link': download_link,
-            }
-        })
-        return response
-    except Exception as e:
-        # print(e)
-        response.write(content={
-            'status': 500,
-            'data': {}
-        })
+        data['status'] = 200
+        data['data'] = {'download_link': download_link}
+
+    except Exception:
+        # 未知异常
+        data['status'] = 500
+        data['data'] = {}
+    finally:
+        response.write(content=json.dumps(data))
         return response
 
 
@@ -84,7 +86,7 @@ def license_download(request):
             if not os.access(decoded_path, mode=0):
                 raise FileNotFoundError
 
-            def file_iterator(file=None, chunk_size=512):
+            def file_iterator(file=None, chunk_size=1024):
                 with open(file, 'rb') as f:
                     while True:
                         c = f.read(chunk_size)
