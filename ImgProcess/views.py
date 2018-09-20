@@ -1,6 +1,5 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, StreamingHttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from django.urls import reverse
 from .settings import MEDIA_ROOT, ALLOWED_SUFFIX, PRIMARY_KEY, BASE_DIR
@@ -9,15 +8,14 @@ from datetime import datetime
 import jwt
 from jwt.exceptions import DecodeError
 import json
+from .exceptions import FileTypeError, EmptyFileError
 
 
-@csrf_exempt
 @require_GET
 def index(request):
     return render_to_response('index.html')
 
 
-@csrf_exempt
 @require_POST
 def license_upload(request):
     """
@@ -27,31 +25,36 @@ def license_upload(request):
     """
     request_detail = os.path.join(BASE_DIR, 'request_header.log')
 
-    # 记录当前请求的信息
-    with open(request_detail, 'wt', encoding='utf-8') as fs:
-        for k, v in request.META.items():
-            fs.write('{0}---{1}\n'.format(k, v))
-        for k, v in request.FILES.items():
-            fs.write('name:{0}   filename:{1}   size:{2}Byte\n'.format(k, v.name, str(v.size)))
-
     response = HttpResponse()
-    response['Content-Type'] = 'application/json'
+    response['Content-Type'] = 'application/json;charset=utf-8'
+    images = request.FILES
     data = {}
     try:
+        if not images:
+            raise EmptyFileError("读取文件失败")
+
+        # 记录最近一次请求的数据，方便调试
+        with open(request_detail, 'wt', encoding='utf-8') as f:
+            for k, v in request.META.items():
+                f.write('{0:-<40}{1}\n'.format(k, v))
+            for name, file in images.items():
+                f.write('name:{0:-<20}filename:{1:-<20}size:{2}Byte\n'.format(name, file.name, file.size))
+
         upload_dir = os.path.join(MEDIA_ROOT, 'uploads/')
         download_dir = os.path.join(MEDIA_ROOT, 'downloads/')
 
-        # 前端验证文件是否非空，文件格式是否正确
-        for source in request.FILES.values():
-            suffix = source.name.split('.')[-1]
+        for source in images.values():
+            suffix = source.name.split('.')[-1].lower()
             if suffix in ALLOWED_SUFFIX:
                 file_path = upload_dir + datetime.now().strftime("%Y%m%d%H%M%S%f") + '.' + suffix
                 with open(file_path, 'wb') as f:
                     if source.size != 0:
                         for block in source.chunks(1024 * 10):
                             f.write(block)
+            else:
+                raise FileTypeError("图片格式不支持")
 
-        # 图像处理模块处理完成后将表格保存在/media/downloads目录下，并且返回excel文件名，供视图调用
+        # 图像处理模块处理完成后将表格保存在 /media/downloads目录下，并且返回excel文件名，供视图调用
         filename = 'tianmao.xlsx'
 
         encoded_path = jwt.encode({'path': (download_dir + filename)}, PRIMARY_KEY, algorithm='HS256')
@@ -59,17 +62,28 @@ def license_upload(request):
 
         data['status'] = 200
         data['data'] = {'download_link': download_link}
+        data['error'] = None
 
-    except Exception:
-        # 未知异常
+    except EmptyFileError as e:
+        data['status'] = 413
+        data['data'] = None
+        data['error'] = e.value
+
+    except FileTypeError as e:
+        data['status'] = 414
+        data['data'] = None
+        data['error'] = e.value
+
+    except Exception as e:
         data['status'] = 500
-        data['data'] = {}
+        data['data'] = None
+        data['error'] = "服务器内部异常:" + e.__str__()
+
     finally:
-        response.write(content=json.dumps(data))
+        response.write(content=json.dumps(data, ensure_ascii=False))
         return response
 
 
-@csrf_exempt
 @require_GET
 def license_download(request):
     """
@@ -104,14 +118,11 @@ def license_download(request):
             raise KeyError
 
     except KeyError:
-        # 捕获参数p不存在异常
-        return JsonResponse(data={'status': 410})
+        return JsonResponse(data={'status': 410, 'error': '缺少请求参数'}, json_dumps_params={'ensure_ascii': False})
     except (DecodeError, IndexError):
-        # 捕获参数值异常
-        return JsonResponse(data={'status': 411})
+        return JsonResponse(data={'status': 411, 'error': '请求参数无效'}, json_dumps_params={'ensure_ascii': False})
     except FileNotFoundError:
-        # 捕获文件不存在异常
-        return JsonResponse(data={'status': 412})
-    except Exception:
-        # 未知异常
-        return JsonResponse(data={'status': 500})
+        return JsonResponse(data={'status': 412, 'error': '请求资源不存在'}, json_dumps_params={'ensure_ascii': False})
+    except Exception as e:
+        return JsonResponse(data={'status': 500, 'error': '服务器内部错误:' + e.__str__()},
+                            json_dumps_params={'ensure_ascii': False})

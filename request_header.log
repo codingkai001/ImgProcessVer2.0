@@ -1,77 +1,80 @@
-ALLUSERSPROFILE---C:\ProgramData
-APPDATA---C:\Users\Administrator\AppData\Roaming
-COMMONPROGRAMFILES---C:\Program Files\Common Files
-COMMONPROGRAMFILES(X86)---C:\Program Files (x86)\Common Files
-COMMONPROGRAMW6432---C:\Program Files\Common Files
-COMPUTERNAME---YUJIE
-COMSPEC---C:\windows\system32\cmd.exe
-DJANGO_SETTINGS_MODULE---ImgProcess.settings
-FP_NO_HOST_CHECK---NO
-HOMEDRIVE---C:
-HOMEPATH---\Users\Administrator
-LOCALAPPDATA---C:\Users\Administrator\AppData\Local
-LOGONSERVER---\\YUJIE
-NODE_PATH---C:\Program Files\nodejs\node_modules
-NUMBER_OF_PROCESSORS---4
-OS---Windows_NT
-PATH---C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Administrator\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Administrator\AppData\Local\Programs\Python\Python37\;C:\Program Files\nodejs;C:\Program Files\nodejs\node_modules;C:\Program Files\nodejs\node_modules\nmp;C:\Program Files\nodejs\node_modules\nmp;
-PATHEXT---.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
-PROCESSOR_ARCHITECTURE---AMD64
-PROCESSOR_IDENTIFIER---Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
-PROCESSOR_LEVEL---6
-PROCESSOR_REVISION---3c03
-PROGRAMDATA---C:\ProgramData
-PROGRAMFILES---C:\Program Files
-PROGRAMFILES(X86)---C:\Program Files (x86)
-PROGRAMW6432---C:\Program Files
-PSMODULEPATH---C:\windows\system32\WindowsPowerShell\v1.0\Modules\
-PUBLIC---C:\Users\Public
-PYCHARM_DJANGO_MANAGE_MODULE---manage
-PYCHARM_TRACK_FILES_PATTERN---migrations
-PYTHONDONTWRITEBYTECODE---1
-PYTHONIOENCODING---UTF-8
-PYTHONPATH---C:\Users\Administrator\Desktop\PyCharm 2018.1.4\helpers\pycharm;C:\Users\Administrator\PycharmProjects\ImgProcess-master;C:/Users/Administrator/PycharmProjects/ImgProcess-master
-PYTHONUNBUFFERED---1
-SESSIONNAME---Console
-SYSTEMDRIVE---C:
-SYSTEMROOT---C:\windows
-TEMP---C:\Users\Administrator\AppData\Local\Temp
-TMP---C:\Users\Administrator\AppData\Local\Temp
-USERDOMAIN---YUJIE
-USERNAME---Administrator
-USERPROFILE---C:\Users\Administrator
-WINDIR---C:\windows
-WINDOWS_TRACING_FLAGS---3
-WINDOWS_TRACING_LOGFILE---C:\BVTBin\Tests\installpackage\csilogfile.log
-RUN_MAIN---true
-SERVER_NAME---yujie
-GATEWAY_INTERFACE---CGI/1.1
-SERVER_PORT---80
-REMOTE_HOST---
-CONTENT_LENGTH---187
-SCRIPT_NAME---
-SERVER_PROTOCOL---HTTP/1.1
-SERVER_SOFTWARE---WSGIServer/0.2
-REQUEST_METHOD---POST
-PATH_INFO---/api/license/upload/
-QUERY_STRING---
-REMOTE_ADDR---127.0.0.1
-CONTENT_TYPE---multipart/form-data; boundary=----WebKitFormBoundaryKxYtKylyceqYxkFy
-HTTP_HOST---127.0.0.1
-HTTP_CONNECTION---keep-alive
-HTTP_CACHE_CONTROL---max-age=0
-HTTP_ORIGIN---http://localhost:63342
-HTTP_UPGRADE_INSECURE_REQUESTS---1
-HTTP_USER_AGENT---Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
-HTTP_ACCEPT---text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
-HTTP_REFERER---http://localhost:63342/ImgProcess-master/test.html?_ijt=otsh4ntfrvgttcbsrt5s180b48
-HTTP_ACCEPT_ENCODING---gzip, deflate, br
-HTTP_ACCEPT_LANGUAGE---zh-CN,zh;q=0.9
-wsgi.input---<_io.BufferedReader name=564>
-wsgi.errors---<_io.TextIOWrapper name='<stderr>' mode='w' encoding='UTF-8'>
-wsgi.version---(1, 0)
-wsgi.run_once---False
-wsgi.url_scheme---http
-wsgi.multithread---True
-wsgi.multiprocess---False
-wsgi.file_wrapper---<class 'wsgiref.util.FileWrapper'>
+ALLUSERSPROFILE-------------------------C:\ProgramData
+APPDATA---------------------------------C:\Users\Administrator\AppData\Roaming
+COMMONPROGRAMFILES----------------------C:\Program Files (x86)\Common Files
+COMMONPROGRAMFILES(X86)-----------------C:\Program Files (x86)\Common Files
+COMMONPROGRAMW6432----------------------C:\Program Files\Common Files
+COMPUTERNAME----------------------------WIN-STQT9M0O794
+COMSPEC---------------------------------C:\windows\system32\cmd.exe
+DJANGO_SETTINGS_MODULE------------------ImgProcess.settings
+HOMEDRIVE-------------------------------C:
+HOMEPATH--------------------------------\Users\Administrator
+LOCALAPPDATA----------------------------C:\Users\Administrator\AppData\Local
+LOGONSERVER-----------------------------\\WIN-STQT9M0O794
+MOZ_PLUGIN_PATH-------------------------D:\Foxit Reader\plugins\
+NUMBER_OF_PROCESSORS--------------------4
+OS--------------------------------------Windows_NT
+PATH------------------------------------C:\ProgramData\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;D:\Python\Scripts\;D:\Python\;C:\Users\Administrator\AppData\Local\Programs\Python\Launcher\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;D:\Python\lib\site-packages\pywin32_system32;D:\Python\lib\site-packages\pywin32_system32
+PATHEXT---------------------------------.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PROCESSOR_ARCHITECTURE------------------x86
+PROCESSOR_ARCHITEW6432------------------AMD64
+PROCESSOR_IDENTIFIER--------------------Intel64 Family 6 Model 61 Stepping 4, GenuineIntel
+PROCESSOR_LEVEL-------------------------6
+PROCESSOR_REVISION----------------------3d04
+PROGRAMDATA-----------------------------C:\ProgramData
+PROGRAMFILES----------------------------C:\Program Files (x86)
+PROGRAMFILES(X86)-----------------------C:\Program Files (x86)
+PROGRAMW6432----------------------------C:\Program Files
+PSMODULEPATH----------------------------C:\Program Files\WindowsPowerShell\Modules;C:\windows\system32\WindowsPowerShell\v1.0\Modules
+PUBLIC----------------------------------C:\Users\Public
+PYCHARM_DJANGO_MANAGE_MODULE------------manage
+PYCHARM_TRACK_FILES_PATTERN-------------migrations
+PYTHONDONTWRITEBYTECODE-----------------1
+PYTHONIOENCODING------------------------UTF-8
+PYTHONPATH------------------------------D:\Jebrains\apps\PyCharm-P\ch-0\183.2153.9\helpers\pycharm;E:\代码\Python\ImgProcessVer2.0;E:/代码/Python/ImgProcessVer2.0
+PYTHONUNBUFFERED------------------------1
+SESSIONNAME-----------------------------Console
+SYSTEMDRIVE-----------------------------C:
+SYSTEMROOT------------------------------C:\windows
+TEMP------------------------------------C:\Users\Administrator\AppData\Local\Temp
+TMP-------------------------------------C:\Users\Administrator\AppData\Local\Temp
+USERDOMAIN------------------------------WIN-STQT9M0O794
+USERDOMAIN_ROAMINGPROFILE---------------WIN-STQT9M0O794
+USERNAME--------------------------------Administrator
+USERPROFILE-----------------------------C:\Users\Administrator
+VBOX_MSI_INSTALL_PATH-------------------D:\
+WINDIR----------------------------------C:\windows
+RUN_MAIN--------------------------------true
+SERVER_NAME-----------------------------WIN-STQT9M0O794
+GATEWAY_INTERFACE-----------------------CGI/1.1
+SERVER_PORT-----------------------------80
+REMOTE_HOST-----------------------------
+CONTENT_LENGTH--------------------------8932
+SCRIPT_NAME-----------------------------
+SERVER_PROTOCOL-------------------------HTTP/1.1
+SERVER_SOFTWARE-------------------------WSGIServer/0.2
+REQUEST_METHOD--------------------------POST
+PATH_INFO-------------------------------/api/license/upload/
+QUERY_STRING----------------------------
+REMOTE_ADDR-----------------------------127.0.0.1
+CONTENT_TYPE----------------------------multipart/form-data; boundary=----WebKitFormBoundaryB9mwEmgBcEopmzld
+HTTP_HOST-------------------------------127.0.0.1
+HTTP_CONNECTION-------------------------keep-alive
+HTTP_CACHE_CONTROL----------------------max-age=0
+HTTP_ORIGIN-----------------------------http://localhost:63342
+HTTP_UPGRADE_INSECURE_REQUESTS----------1
+HTTP_USER_AGENT-------------------------Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36
+HTTP_ACCEPT-----------------------------text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+HTTP_REFERER----------------------------http://localhost:63342/ImgProcessVer2.0/test.html?_ijt=r89ibrg2c0tt214o5874fkk6ou
+HTTP_ACCEPT_ENCODING--------------------gzip, deflate, br
+HTTP_ACCEPT_LANGUAGE--------------------zh-CN,zh;q=0.9,en;q=0.8
+HTTP_COOKIE-----------------------------csrftoken=dWO37BEmeFlr7HAFnECqs3pNY9dJP2SXPHIQkqukGwahwSe7A5H7m0PjJ5hpm1y3
+wsgi.input------------------------------<_io.BufferedReader name=788>
+wsgi.errors-----------------------------<_io.TextIOWrapper name='<stderr>' mode='w' encoding='UTF-8'>
+wsgi.version----------------------------(1, 0)
+wsgi.run_once---------------------------False
+wsgi.url_scheme-------------------------http
+wsgi.multithread------------------------True
+wsgi.multiprocess-----------------------False
+wsgi.file_wrapper-----------------------<class 'wsgiref.util.FileWrapper'>
+name:img1----------------filename:6.png---------------size:3973Byte
+name:img2----------------filename:9.png---------------size:4647Byte
