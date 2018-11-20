@@ -14,7 +14,7 @@ import os
 from .scripts import get_ip
 import socket
 
-SERVER_IP = "120.78.156.216"
+SERVER_IP = "134.175.103.34"
 if socket.gethostname() == "root":
     # 生产环境
     DEBUG = False
